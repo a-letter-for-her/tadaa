@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorry Letter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .characters {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            align-items: flex-end;
+        }
+
+        .character {
+            position: relative;
+        }
+
+        .stick-man, .stick-woman {
+            position: relative;
+        }
+
+        /* Stick Man */
+        .stick-man .head {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #333;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            position: relative;
+            background: #fff;
+        }
+
+        .stick-man .body {
+            width: 3px;
+            height: 60px;
+            background: #333;
+            margin: 0 auto;
+        }
+
+        .stick-man .arms {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: #333;
+        }
+
+        .stick-man .legs {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .stick-man .leg-left, .stick-man .leg-right {
+            width: 3px;
+            height: 40px;
+            background: #333;
+            position: absolute;
+        }
+
+        .stick-man .leg-left {
+            transform: rotate(-20deg);
+            left: -10px;
+        }
+
+        .stick-man .leg-right {
+            transform: rotate(20deg);
+            right: -10px;
+        }
+
+        /* Stick Woman */
+        .stick-woman .head {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #333;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            position: relative;
+            background: #fff;
+        }
+
+        .stick-woman .hair {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            height: 20px;
+            background: #8b4513;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .stick-woman .body {
+            width: 3px;
+            height: 60px;
+            background: #333;
+            margin: 0 auto;
+        }
+
+        .stick-woman .dress {
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-top: 40px solid #ff6b9d;
+        }
+
+        .stick-woman .arms {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: #333;
+        }
+
+        .stick-woman .legs {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .stick-woman .leg-left, .stick-woman .leg-right {
+            width: 3px;
+            height: 30px;
+            background: #333;
+            position: absolute;
+        }
+
+        .stick-woman .leg-left {
+            left: -8px;
+        }
+
+        .stick-woman .leg-right {
+            right: -8px;
+        }
+
+        /* Facial Expressions */
+        .face {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .eyes {
+            display: flex;
+            justify-content: space-between;
+            width: 20px;
+            margin: 0 auto 5px;
+        }
+
+        .eye {
+            width: 4px;
+            height: 4px;
+            background: #333;
+            border-radius: 50%;
+        }
+
+        .mouth {
+            width: 12px;
+            height: 6px;
+            border: 2px solid #333;
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            margin: 0 auto;
+        }
+
+        /* Sad expression */
+        .sad .mouth {
+            border-bottom: none;
+            border-top: 2px solid #333;
+            border-radius: 12px 12px 0 0;
+            transform: rotate(180deg);
+        }
+
+        .sad .eye {
+            position: relative;
+        }
+
+        .sad .eye::after {
+            content: '';
+            position: absolute;
+            left: 1px;
+            top: 4px;
+            width: 2px;
+            height: 8px;
+            background: #4a90e2;
+            border-radius: 1px;
+        }
+
+        /* Happy expression */
+        .happy .mouth {
+            border-radius: 0 0 12px 12px;
+        }
+
+        .letter-content {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        .letter-title {
+            font-size: 32px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .controls {
+            margin-top: 30px;
+        }
+
+        button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #c0392b;
+        }
+
+        .character-label {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="characters">
+            <div class="character">
+                <div class="stick-man">
+                    <div class="head">
+                        <div class="face sad" id="man-face">
+                            <div class="eyes">
+                                <div class="eye"></div>
+                                <div class="eye"></div>
+                            </div>
+                            <div class="mouth"></div>
+                        </div>
+                    </div>
+                    <div class="body"></div>
+                    <div class="arms"></div>
+                    <div class="legs">
+                        <div class="leg-left"></div>
+                        <div class="leg-right"></div>
+                    </div>
+                </div>
+                <div class="character-label">Man</div>
+            </div>
+
+            <div class="character">
+                <div class="stick-woman">
+                    <div class="head">
+                        <div class="hair"></div>
+                        <div class="face sad" id="woman-face">
+                            <div class="eyes">
+                                <div class="eye"></div>
+                                <div class="eye"></div>
+                            </div>
+                            <div class="mouth"></div>
+                        </div>
+                    </div>
+                    <div class="body"></div>
+                    <div class="dress"></div>
+                    <div class="arms"></div>
+                    <div class="legs">
+                        <div class="leg-left"></div>
+                        <div class="leg-right"></div>
+                    </div>
+                </div>
+                <div class="character-label">Woman</div>
+            </div>
+        </div>
+
+        <h1 class="letter-title">I'm Sorry</h1>
+        
+        <div class="letter-content" id="letter-text">
+            Dear Friend,<br><br>
+            I want to sincerely apologize for my actions. I know I've hurt you, and I'm truly sorry. 
+            Your friendship means the world to me, and I hope you can find it in your heart to forgive me.<br><br>
+            I promise to do better and learn from this mistake.<br><br>
+            With heartfelt regret,<br>
+            Your Friend
+        </div>
+
+        <div class="controls">
+            <button onclick="changeExpression('sad')">Show Sadness</button>
+            <button onclick="changeExpression('happy')">Show Forgiveness</button>
+            <button onclick="changeMessage('apologetic')">Apologetic Message</button>
+            <button onclick="changeMessage('hopeful')">Hopeful Message</button>
+        </div>
+    </div>
+
+    <script>
+        function changeExpression(mood) {
+            const manFace = document.getElementById('man-face');
+            const womanFace = document.getElementById('woman-face');
+            
+            manFace.className = `face ${mood}`;
+            womanFace.className = `face ${mood}`;
+        }
+
+        function changeMessage(type) {
+            const letterText = document.getElementById('letter-text');
+            
+            if (type === 'apologetic') {
+                letterText.innerHTML = `
+                    Dear Friend,<br><br>
+                    I want to sincerely apologize for my actions. I know I've hurt you, and I'm truly sorry. 
+                    Your friendship means the world to me, and I hope you can find it in your heart to forgive me.<br><br>
+                    I promise to do better and learn from this mistake.<br><br>
+                    With heartfelt regret,<br>
+                    Your Friend
+                `;
+                changeExpression('sad');
+            } else if (type === 'hopeful') {
+                letterText.innerHTML = `
+                    Dear Friend,<br><br>
+                    I know things have been difficult between us, but I believe we can work through this together. 
+                    I've learned from my mistakes and I'm committed to making things right.<br><br>
+                    Thank you for your patience and understanding. I'm grateful for your friendship.<br><br>
+                    With hope and appreciation,<br>
+                    Your Friend
+                `;
+                changeExpression('happy');
+            }
+        }
+    </script>
+</body>
+</html>

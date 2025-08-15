@@ -1,0 +1,612 @@
+.sorry-container {
+  background: linear-gradient(145deg, rgba(15, 20, 25, 0.95), rgba(30, 58, 46, 0.95));
+  border: 3px solid #8b6f47;
+  border-radius: 25px;
+  box-shadow: 0 0 40px rgba(139, 111, 71, 0.2), inset 0 0 40px rgba(244, 228, 188, 0.05);
+  padding: 25px;
+  max-width: 100%;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(15px);
+}
+
+.sorry-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="paper" patternUnits="userSpaceOnUse" width="100" height="100"><rect fill="%23f4e4bc" width="100" height="100" opacity="0.02"/><circle cx="25" cy="25" r="1" fill="%238b6f47" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%238b6f47" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23paper)"/></svg>') repeat;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* Original Characters Styling - Commented Out */
+/*
+.characters {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 25px;
+  align-items: flex-end;
+  padding: 0 10px;
+}
+*/
+
+/* New Celestial Characters Styling */
+.celestial-characters {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Original Character - Commented Out */
+/*
+.character {
+  position: relative;
+}
+*/
+
+/* New Celestial Character Styling */
+.celestial-character {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Original Stick Characters - Commented Out */
+/*
+.stick-man, .stick-woman {
+  position: relative;
+}
+*/
+
+/* Celestial Containers */
+.sun-container, .moon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sun Icon Styling */
+.sun-icon {
+  font-size: clamp(60px, 15vw, 80px);
+  color: #ffd700;
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+  animation: float 4s ease-in-out infinite, sunRotate 20s linear infinite;
+  position: relative;
+  z-index: 1;
+}
+
+.sun-icon.sad {
+  color: #ffb347;
+  filter: drop-shadow(0 0 15px rgba(255, 179, 71, 0.4));
+}
+
+.sun-icon.angry {
+  color: #ff6347;
+  filter: drop-shadow(0 0 25px rgba(255, 99, 71, 0.8));
+  animation: float 4s ease-in-out infinite, sunRotate 10s linear infinite, angryPulse 2s ease-in-out infinite;
+}
+
+.sun-icon.happy {
+  color: #ffeb3b;
+  filter: drop-shadow(0 0 30px rgba(255, 235, 59, 0.9));
+  animation: float 4s ease-in-out infinite, sunRotate 25s linear infinite, happyBounce 3s ease-in-out infinite;
+}
+
+@keyframes sunRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes angryPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes happyBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Moon Icon Styling */
+.moon-icon {
+  font-size: clamp(60px, 15vw, 80px);
+  color: #e6e6fa;
+  filter: drop-shadow(0 0 20px rgba(230, 230, 250, 0.6));
+  animation: float 4s ease-in-out infinite 2s, moonGlow 8s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+.moon-icon.sad {
+  color: #b0c4de;
+  filter: drop-shadow(0 0 15px rgba(176, 196, 222, 0.4));
+}
+
+.moon-icon.angry {
+  color: #cd5c5c;
+  filter: drop-shadow(0 0 25px rgba(205, 92, 92, 0.8));
+  animation: float 4s ease-in-out infinite 2s, moonGlow 4s ease-in-out infinite, angryShake 1.5s ease-in-out infinite;
+}
+
+.moon-icon.happy {
+  color: #f0f8ff;
+  filter: drop-shadow(0 0 30px rgba(240, 248, 255, 0.9));
+  animation: float 4s ease-in-out infinite 2s, moonGlow 10s ease-in-out infinite, happyTwinkle 4s ease-in-out infinite;
+}
+
+@keyframes moonGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes angryShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+@keyframes happyTwinkle {
+  0%, 100% { filter: drop-shadow(0 0 30px rgba(240, 248, 255, 0.9)); }
+  50% { filter: drop-shadow(0 0 40px rgba(240, 248, 255, 1)) drop-shadow(0 0 60px rgba(240, 248, 255, 0.5)); }
+}
+
+/* Celestial Face Styling */
+.sun-face, .moon-face {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.celestial-eyes {
+  display: flex;
+  justify-content: space-between;
+  width: clamp(20px, 5vw, 25px);
+  margin: 0 auto 5px;
+}
+
+.celestial-eye {
+  width: clamp(4px, 1vw, 6px);
+  height: clamp(4px, 1vw, 6px);
+  background: #2c1810;
+  border-radius: 50%;
+  animation: blink 4s infinite;
+}
+
+@keyframes blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+.celestial-mouth {
+  width: clamp(12px, 3vw, 16px);
+  height: clamp(6px, 1.5vw, 8px);
+  border: 2px solid #2c1810;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.stick-man .legs {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Celestial Expression Overrides */
+.sun-face.sad .celestial-mouth,
+.moon-face.sad .celestial-mouth {
+  border-bottom: none;
+  border-top: 2px solid #2c1810;
+  border-radius: 12px 12px 0 0;
+  /* transform: rotate(180deg); */
+}
+
+.sun-face.sad .celestial-eye,
+.moon-face.sad .celestial-eye {
+  position: relative;
+  background-color: grey;
+}
+
+.sun-face.sad .celestial-eye::after,
+.moon-face.sad .celestial-eye::after {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 6px;
+  width: 2px;
+  height: 8px;
+  background: #4a90e2;
+  border-radius: 1px;
+}
+
+.sun-face.angry .celestial-mouth,
+.moon-face.angry .celestial-mouth {
+  width: clamp(14px, 3.5vw, 18px);
+  height: clamp(4px, 1vw, 6px);
+  border: 2px solid #2c1810;
+  border-bottom: none;
+  border-radius: 0;
+  transform: none;
+  background: white;
+}
+
+.sun-face.angry .celestial-eye,
+.moon-face.angry .celestial-eye {
+  position: relative;
+  background: white;
+}
+
+.sun-face.angry .celestial-eye::before,
+.moon-face.angry .celestial-eye::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -2px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #2c1810;
+}
+
+.sun-face.angry .celestial-eye::after,
+.moon-face.angry .celestial-eye::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: -2px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #2c1810;
+}
+
+.sun-face.happy .celestial-mouth,
+.moon-face.happy .celestial-mouth {
+  border-radius: 0 0 16px 16px;
+  border-width: 3px;
+}
+
+.stick-man .leg-left {
+  transform: rotate(-20deg);
+  left: -10px;
+}
+
+.stick-man .leg-right {
+  transform: rotate(20deg);
+  right: -10px;
+}
+
+/* Stick Woman */
+.stick-woman .head {
+  width: clamp(35px, 8vw, 40px);
+  height: clamp(35px, 8vw, 40px);
+  border: 3px solid #d4af37;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  position: relative;
+  background: linear-gradient(145deg, #2d1b1b, #3d2d2d);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+  animation: float 3s ease-in-out infinite 0.5s;
+}
+
+.stick-woman .hair {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  height: clamp(25px, 6vw, 30px);
+  background: linear-gradient(145deg, #5d4e37, #4a3c2a);
+  border-radius: 60% 60% 40% 40%;
+  box-shadow: 0 0 10px rgba(93, 78, 55, 0.4);
+}
+
+.stick-woman .hair::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -3px;
+  width: 8px;
+  height: 15px;
+  background: linear-gradient(145deg, #5d4e37, #4a3c2a);
+  border-radius: 50%;
+  transform: rotate(-20deg);
+}
+
+.stick-woman .hair::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -3px;
+  width: 8px;
+  height: 15px;
+  background: linear-gradient(145deg, #5d4e37, #4a3c2a);
+  border-radius: 50%;
+  transform: rotate(20deg);
+}
+
+.stick-woman .body {
+  width: 4px;
+  height: clamp(50px, 12vw, 60px);
+  background: linear-gradient(180deg, #8b6f47, #5d4e37);
+  margin: 0 auto;
+  box-shadow: 0 0 8px rgba(139, 111, 71, 0.4);
+}
+
+.stick-woman .dress {
+  position: absolute;
+  top: clamp(55px, 14vw, 70px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(35px, 8vw, 45px);
+  height: clamp(25px, 6vw, 30px);
+  background: linear-gradient(145deg, #4a6b4a, #3a5a3a);
+  border-radius: 0 0 50% 50%;
+  border: 2px solid #8b6f47;
+  filter: drop-shadow(0 0 10px rgba(74, 107, 74, 0.4));
+}
+
+.stick-woman .dress::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(20px, 4vw, 25px);
+  height: clamp(15px, 3vw, 18px);
+  background: linear-gradient(145deg, #4a6b4a, #3a5a3a);
+  border-radius: 20% 20% 0 0;
+  border: 2px solid #8b6f47;
+  border-bottom: none;
+}
+
+.stick-woman .dress::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(40px, 10vw, 50px);
+  height: clamp(8px, 2vw, 10px);
+  background: linear-gradient(145deg, #4a6b4a, #3a5a3a);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.stick-woman .arms {
+  position: absolute;
+  top: clamp(40px, 10vw, 50px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(40px, 10vw, 50px);
+  height: 4px;
+  background: linear-gradient(90deg, #8b6f47, #5d4e37);
+  box-shadow: 0 0 8px rgba(139, 111, 71, 0.4);
+}
+
+.stick-woman .legs {
+  position: absolute;
+  top: clamp(80px, 20vw, 100px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.stick-woman .leg-left, .stick-woman .leg-right {
+  width: 4px;
+  height: clamp(25px, 6vw, 30px);
+  background: linear-gradient(180deg, #8b6f47, #5d4e37);
+  position: absolute;
+  box-shadow: 0 0 6px rgba(139, 111, 71, 0.4);
+}
+
+.stick-woman .leg-left {
+  left: -6px;
+}
+
+.stick-woman .leg-right {
+  right: -6px;
+}
+
+.stick-woman .shoes {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.stick-woman .shoe-left,
+.stick-woman .shoe-right {
+  position: absolute;
+  width: clamp(8px, 2vw, 10px);
+  height: clamp(4px, 1vw, 5px);
+  background: linear-gradient(145deg, #5d4e37, #4a3c2a);
+  border-radius: 50% 50% 20% 20%;
+}
+
+.stick-woman .shoe-left {
+  left: -12px;
+}
+
+.stick-woman .shoe-right {
+  right: -12px;
+}
+
+/* Facial Expressions */
+.face {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.eyes {
+  display: flex;
+  justify-content: space-between;
+  width: 20px;
+  margin: 0 auto 5px;
+}
+
+.eye {
+  width: 4px;
+  height: 4px;
+  background: #333;
+  border-radius: 50%;
+}
+
+.mouth {
+  width: 12px;
+  height: 6px;
+  border: 2px solid #333;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  margin: 0 auto;
+}
+
+/* Sad expression */
+.sad .mouth {
+  border-bottom: none;
+  border-top: 2px solid #333;
+  border-radius: 12px 12px 0 0;
+  transform: rotate(180deg);
+}
+
+.sad .eye {
+  position: relative;
+}
+
+.sad .eye::after {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 4px;
+  width: 2px;
+  height: 8px;
+  background: #4a90e2;
+  border-radius: 1px;
+}
+
+/* Happy expression */
+.happy .mouth {
+  border-radius: 0 0 12px 12px;
+}
+
+/* Angry expression */
+.angry .mouth {
+  width: 14px;
+  height: 4px;
+  border: 2px solid #d4af37;
+  border-bottom: none;
+  border-radius: 0;
+  transform: none;
+  background: #d4af37;
+}
+
+.angry .eye {
+  position: relative;
+  background: #d4af37;
+}
+
+.angry .eye::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #d4af37;
+}
+
+.angry .eye::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #d4af37;
+}
+
+.letter-content {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(16px, 4vw, 20px);
+  line-height: 1.8;
+  color: #f4e4bc;
+  margin: 25px 0;
+  text-shadow: 0 0 8px rgba(244, 228, 188, 0.3);
+  background: linear-gradient(145deg, rgba(15, 20, 25, 0.6), rgba(30, 58, 46, 0.4));
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px solid rgba(139, 111, 71, 0.4);
+  backdrop-filter: blur(5px);
+  font-style: italic;
+}
+
+.letter-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 6vw, 36px);
+  color: #d4af37;
+  margin-bottom: 25px;
+  font-weight: 700;
+  animation: glow 3s ease-in-out infinite alternate;
+  letter-spacing: 1px;
+  font-style: italic;
+}
+
+.controls {
+  margin-top: 30px;
+}
+
+.controls button {
+  background: linear-gradient(145deg, #3a5f3a, #2d4a2d);
+  color: #f4e4bc;
+  border: 2px solid #8b6f47;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: clamp(14px, 3vw, 16px);
+  font-family: 'Crimson Text', serif;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 5px;
+  transition: all 0.3s;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 15px rgba(139, 111, 71, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.controls button:hover {
+  background: linear-gradient(145deg, #4a6f4a, #3d5a3d);
+  color: #d4af37;
+  border-color: #d4af37;
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+}
+
+.character-label {
+  margin-top: 12px;
+  font-size: clamp(14px, 3vw, 16px);
+  color: #d4af37;
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+  font-style: italic;
+}

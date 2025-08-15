@@ -1,0 +1,48 @@
+.home-container {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 40px;
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.home-content h1 {
+  font-size: 32px;
+  color: #e74c3c;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.home-content p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.letter-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.letter-link {
+  background: #e74c3c;
+  color: white;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s;
+  min-width: 200px;
+  display: block;
+}
+
+.letter-link:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
