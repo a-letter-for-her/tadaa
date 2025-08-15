@@ -13,7 +13,7 @@ interface LetterData {
 const letterData: LetterData[] = [
   {
     title: "",
-    message: "هول حيدر و زهراء",
+    message: "هول زهراء و حيدر",
     sunExpression: 'happy',
     moonExpression: 'happy'
   },
@@ -151,7 +151,7 @@ const letterData: LetterData[] = [
   },
   {
     title: "",
-    message: "فا ما عندي شي غير انو من كل قلبي، والله من كل قلبي، بعتذر عتخبيص مبارح.",
+    message: "فا ما عندي شي غير انو من كل قلبي، والله من كل قلبي، بعتذر عتخبيص مبارح",
     sunExpression: 'happy',
     moonExpression: 'happy'
   }
