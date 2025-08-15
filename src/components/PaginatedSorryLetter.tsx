@@ -178,7 +178,7 @@ const PaginatedSorryLetter: React.FC = () => {
           onClick={goToPrevious}
           aria-label="Previous letter"
         >
-          <ChevronLeft size={28} />
+          <ChevronLeft size={28} strokeWidth={3} />
         </button>
         
         <div className="letter-wrapper">
@@ -195,21 +195,83 @@ const PaginatedSorryLetter: React.FC = () => {
           onClick={goToNext}
           aria-label="Next letter"
         >
-          <ChevronRight size={28} />
+          <ChevronRight size={28} strokeWidth={3} />
         </button>
       </div>
       
       <div className="pagination-indicator">
-        <div className="dots-container">
-          {letterData.map((_, index) => (
-            <button
-              key={index}
-              className={`dot ${index === currentIndex ? 'active' : ''}`}
-              onClick={() => setCurrentIndex(index)}
-              aria-label={`Go to letter ${index + 1}`}
-            />
-          ))}
-        </div>
+        {/* <div className="dots-container">
+          {(() => {
+            const maxDots = 7;
+            const totalPages = letterData.length;
+            
+            if (totalPages <= maxDots) {
+              // Show all dots if we have few pages
+              return letterData.map((_, index) => (
+                <button
+                  key={index}
+                  className={`dot ${index === currentIndex ? 'active' : ''}`}
+                  onClick={() => setCurrentIndex(index)}
+                  aria-label={`Go to letter ${index + 1}`}
+                />
+              ));
+            }
+            
+            // Show smart pagination for many pages
+            let startIndex = Math.max(0, currentIndex - 3);
+            const endIndex = Math.min(totalPages - 1, startIndex + maxDots - 1);
+            
+            if (endIndex - startIndex < maxDots - 1) {
+              startIndex = Math.max(0, endIndex - maxDots + 1);
+            }
+            
+            const dots = [];
+            
+            // First page dot
+            if (startIndex > 0) {
+              dots.push(
+                <button
+                  key={0}
+                  className={`dot ${0 === currentIndex ? 'active' : ''}`}
+                  onClick={() => setCurrentIndex(0)}
+                  aria-label="Go to letter 1"
+                />
+              );
+              if (startIndex > 1) {
+                dots.push(<span key="ellipsis1" className="ellipsis">...</span>);
+              }
+            }
+            
+            // Middle dots
+            for (let i = startIndex; i <= endIndex; i++) {
+              dots.push(
+                <button
+                  key={i}
+                  className={`dot ${i === currentIndex ? 'active' : ''}`}
+                  onClick={() => setCurrentIndex(i)}
+                  aria-label={`Go to letter ${i + 1}`}
+                />
+              );
+            }
+            
+            // Last page dot
+            if (endIndex < totalPages - 1) {
+              if (endIndex < totalPages - 2) {
+                dots.push(<span key="ellipsis2" className="ellipsis">...</span>);
+              }
+              dots.push(
+                <button
+                  key={totalPages - 1}
+                  className={`dot ${totalPages - 1 === currentIndex ? 'active' : ''}`}
+                  onClick={() => setCurrentIndex(totalPages - 1)}
+                  aria-label={`Go to letter ${totalPages}`}
+                />
+              );
+            }
+            
+            return dots;
+          })()}
+        </div> */}
         <div className="page-info">
           {currentIndex + 1} of {letterData.length}
         </div>
